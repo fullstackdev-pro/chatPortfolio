@@ -68,7 +68,7 @@ function LogIn(props) {
           onClick={() => {
             Login();
           }}
-          className="mt-8 py-2 w-full text-center text-white bg-[#3E334E] rounded text-[0.9rem]"
+          className="mt-8 py-2 w-full text-center text-white bg-[#3E334E] rounded text-[0.9rem] cursor-pointer"
         >
           Log In
         </button>

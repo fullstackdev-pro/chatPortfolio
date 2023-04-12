@@ -72,7 +72,7 @@ function SignUp(props) {
           required
           onChange={handleChangeUserName}
         />
-        <p className="text-[#3E334E] mt-6">Password</p>
+        <p className="text-[#3E334E] mt-4">Password</p>
         <input
           type="password"
           name="password"
@@ -85,7 +85,7 @@ function SignUp(props) {
             setPassword(e.target.value);
           }}
         />
-        <p className="text-[#3E334E] mt-6">Confirm password</p>
+        <p className="text-[#3E334E] mt-4">Confirm password</p>
         <input
           type="password"
           name="cpassword"

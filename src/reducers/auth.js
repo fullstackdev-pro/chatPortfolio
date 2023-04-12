@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 export default (state = { authData: null }, action) => {
     switch (action.type) {
       case "AUTH":

@@ -93,7 +93,7 @@ function LogIn(props) {
         </div>
         <p className="mt-4">
           Need an account?{" "}
-          <Link to="/signup" className="text-[#3E334E]">
+          <Link to="/signUp" className="text-[#3E334E]">
             Sign Up
           </Link>
         </p>

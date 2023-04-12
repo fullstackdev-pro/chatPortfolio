@@ -127,7 +127,7 @@ function SignUp(props) {
         </div>
         <p className="mt-4">
           Already a user?{" "}
-          <Link to="/login" className="text-[#3E334E]">
+          <Link to="/" className="text-[#3E334E]">
             Log In
           </Link>
         </p>

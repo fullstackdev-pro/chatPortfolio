@@ -1,84 +1,99 @@
 import React, { useState } from "react";
-import { Link ,useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function LogIn(props) {
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+  const [userName, setUserName] = useState("");
 
   const handleChangePassword = (event) => {
     setPassword(event.target.value);
   };
 
-  const handleChangeEmail = (event) => {
-    setEmail(event.target.value);
+  const handleChangeUserName = (event) => {
+    setUserName(event.target.value);
   };
 
   const navigate = useNavigate();
 
   async function Login() {
-    if (email && password) {
+    if (userName && password) {
       await axios
         .post(`${process.env.REACT_APP_API_KEY}/login`, {
-          email: email,
+          userName: userName,
           password: password,
         })
         .then(function (response) {
-          const {token, user} = response.data
-            navigate('/')
-          localStorage.setItem('token',token)
-          localStorage.setItem('userObject',JSON.stringify(user))
+          const { token, user } = response.data;
+          navigate("/");
+          localStorage.setItem("token", token);
+          localStorage.setItem("userObject", JSON.stringify(user));
         })
-        .catch(function (error) {
-          
-        });
+        .catch(function (error) {});
     }
   }
 
   return (
-    <div className="bg-blue-400 p-10 pt-24 h-[100vh] sm:px-20 md:px-[14rem] lg:px-[23rem] lg:pt-[5rem] xl:px-[30rem] xl:pt-[7rem]">
-      <form className="p-8 pb-0 border-[1px] border-b-0 bg-white rounded-t-xl">
-        <p htmlFor="" className="block text-center text-3xl font-semibold">
+    <div className="bg-[#3E334E] p-10 pt-16 lg:h-[100vh] sm:px-20 md:px-[14rem] lg:px-[23rem] lg:pt-[5rem] xl:px-[30rem]">
+      <form className="px-12 py-8 pb-0 border-[1px] border-b-0 bg-white rounded-t-lg">
+        <p
+          htmlFor=""
+          className="block text-3xl font-semibold text-[#3E334E] pt-4"
+        >
           Log In
         </p>
         <br />
+        <p className="text-[#3E334E]">User Name</p>
         <input
-          type="email"
-          name="email"
-          id="email"
-          className="w-full border-[1px]  py-1 px-3 rounded-sm"
-          placeholder="Enter Email"
+          type="userName"
+          name="userName"
+          id="userName"
+          className="w-full border-2 py-2 px-3 rounded border-[#3E334E] placeholder:text-[#3E334E]"
+          placeholder="Enter User Name"
           required
-          onChange={handleChangeEmail}
+          onChange={handleChangeUserName}
         />
+        <p className="text-[#3E334E] pt-4">Password</p>
         <input
           type="password"
           name="password"
           id="password"
-          className="w-full border-[1px] mt-6 py-1 px-3 rounded-[4px]"
+          className="w-full border-2 py-2 px-3 rounded border-[#3E334E] placeholder:text-[#3E334E]"
           placeholder="Enter Password"
           required
           onChange={handleChangePassword}
         />
-        <button type={'button'}
-          onClick={() => {Login()}}
-          className="mt-8 py-1 w-full text-center text-white bg-blue-500 rounded-[4px]"
+        <button
+          type={"button"}
+          onClick={() => {
+            Login();
+          }}
+          className="mt-8 py-2 w-full text-center text-white bg-[#3E334E] rounded text-[0.9rem]"
         >
           Log In
         </button>
       </form>
-      <div className="bg-white text-center pb-4 rounded-b-xl px-8">
-        <div className="text-right ">
-          <button className="text-center text-blue-400 pt-2">
+      <div className="bg-white text-center pb-4 rounded-b-lg px-8">
+        <div className="text-right pr-4 pt-4 cursor-pointer">
+          <Link to="" className="text-center text-[#3E334E]">
             Forgot Password?
-          </button>
+          </Link>
         </div>
-        <p className="my-4">or</p>
-        <div className="mx-4 flex justify-around">
+        <p className="mt-4">Or, login with</p>
+        <div className="mx-4 mt-4 flex justify-around">
+          <button className="py-[0.375rem] text-center w-full border border-[#3E334E] text-[#3E334E] rounded cursor-pointer">
+            Google
+          </button>
+          <button className="mx-4 py-[0.375rem] text-center w-full border border-[#3E334E] text-[#3E334E] rounded cursor-pointer">
+            Linked In
+          </button>
+          <button className="py-[0.375rem] text-center w-full border border-[#3E334E] text-[#3E334E] rounded cursor-pointer">
+            Facebook
+          </button>
         </div>
         <p className="mt-4">
           Need an account?{" "}
-          <Link to="/signup" className="text-blue-400">
+          <Link to="/signup" className="text-[#3E334E]">
             Sign Up
           </Link>
         </p>

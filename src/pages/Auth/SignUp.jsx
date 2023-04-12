@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link ,useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function SignUp(props) {
@@ -29,81 +29,69 @@ function SignUp(props) {
 
   //server
   const [userName, setUsername] = useState("");
-  const [email, setEmail] = useState("");
 
   const handleChangeUserName = (event) => {
     setUsername(event.target.value);
   };
 
-  const handleChangeEmail = (event) => {
-    setEmail(event.target.value);
-  };
-
   const navigate = useNavigate();
 
   async function Register() {
-    if (userName && email && password && password === cPassword) {
+    if (userName && password && password === cPassword) {
       await axios
         .post(`${process.env.REACT_APP_API_KEY}/register`, {
           username: userName,
-          email: email,
           password: password,
         })
         .then(function (response) {
-          console.log(response)
-          navigate('/login')
+          console.log(response);
+          navigate("/login");
         })
         .catch(function (error) {
           console.log(error.response.data);
           // toast.warning(error.response.data.message)
-          navigate('/signup')
+          navigate("/signup");
         });
     }
   }
 
   return (
-    <div className="bg-blue-400 p-10 pt-[4.5rem] h-[100vh] sm:px-40 md:px-[16rem] lg:px-[23rem] lg:pt-[4rem] xl:px-[30rem] xl:pt-[5.5rem]">
-      <form className="p-8 pb-0 border-[1px] border-b-0 bg-white rounded-t-xl">
+    <div className="bg-[#3E334E] lg:h-[100vh] p-10 pt-[4.5rem] sm:px-40 md:px-[16rem] lg:px-[23rem] lg:pt-[4rem] xl:px-[30rem] xl:pt-[4.5rem]">
+      <form className="p-8 pb-0 border-[1px] border-b-0 bg-white rounded-t-lg">
         <p htmlFor="" className="block text-center text-3xl font-semibold">
           Sign Up
         </p>
         <br />
+        <p className="text-[#3E334E]">User Name</p>
         <input
           type="text"
           name="username"
           id="username"
-          className="w-full border-[1px]  py-1 px-3 rounded-sm"
+          className="w-full border-2 py-2 px-3 rounded border-[#3E334E] placeholder:text-[#3E334E]"
           placeholder="Enter Username"
           required
           onChange={handleChangeUserName}
         />
-        <input
-          type="email"
-          name="email"
-          id="email"
-          className="w-full border-[1px] mt-4 py-1 px-3 rounded-sm"
-          placeholder="Enter Email"
-          required
-          onChange={handleChangeEmail}
-        />
+        <p className="text-[#3E334E] mt-6">Password</p>
         <input
           type="password"
           name="password"
           id="password"
           value={password}
-          className="w-full border-[1px] mt-4 py-1 px-3 rounded-[4px]"
+          className="w-full border-2 py-2 px-3 rounded border-[#3E334E] placeholder:text-[#3E334E]"
           placeholder="Enter Password"
           required
           onChange={(e) => {
             setPassword(e.target.value);
           }}
         />
+        <p className="text-[#3E334E] mt-6">Confirm password</p>
         <input
           type="password"
           name="cpassword"
           id="confirmPassword"
           value={cPassword}
-          className={`w-full border-[1px] mt-4 py-1 px-3 rounded-[4px] ${cPasswordClass}`}
+          className={`w-full border-2 py-2 px-3 rounded border-[#3E334E] placeholder:text-[#3E334E] ${cPasswordClass}`}
           placeholder="Confirm Password"
           required
           onChange={handleCPassword}
@@ -114,8 +102,9 @@ function SignUp(props) {
         ) : (
           ""
         )}
-        <button type={'button'}
-          className="mt-8 py-1 w-full text-center text-white bg-blue-500 rounded-[4px]"
+        <button
+          type={"button"}
+          className="mt-8 py-2 w-full text-center text-white text-[0.85rem] bg-[#3E334E] rounded-[4px] cursor-pointer"
           onClick={() => {
             Register();
           }}
@@ -123,13 +112,22 @@ function SignUp(props) {
           Sign Up
         </button>
       </form>
-      <div className="bg-white text-center pb-4 rounded-b-xl px-8">
-        <p className="py-4">or</p>
-        <div className="mx-4 flex justify-around">
+      <div className="bg-white text-center pb-4 rounded-b-lg px-8">
+        <p className="py-4">Or, login with</p>
+        <div className="mt-0 flex justify-around">
+          <button className="py-[0.375rem] text-center w-full border border-[#3E334E] text-[#3E334E] rounded cursor-pointer">
+            Google
+          </button>
+          <button className="mx-4 py-[0.375rem] text-center w-full border border-[#3E334E] text-[#3E334E] rounded cursor-pointer">
+            Linked In
+          </button>
+          <button className="py-[0.375rem] text-center w-full border border-[#3E334E] text-[#3E334E] rounded cursor-pointer">
+            Facebook
+          </button>
         </div>
         <p className="mt-4">
           Already a user?{" "}
-          <Link to="/login" className="text-blue-400">
+          <Link to="/login" className="text-[#3E334E]">
             Log In
           </Link>
         </p>
